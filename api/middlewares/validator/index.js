@@ -1,10 +1,12 @@
 const ProductBrand = require("../../models/ProductBrand")
 const ProductImages = require("../../models/ProductImages")
+const { errorHandler, errorTimeHandler } = require("./errorHandler");
 const Category = require("../../models/Category")
 const _ = require('lodash')
 const path = require("path");
 const fs = require("fs");
 const { districts } = require("../common");
+
 exports.validateLead = (req, res, next) => {
     // email is not null, valid and normalized
     req.check("email", "Email must be between 3 to 32 characters")
@@ -18,12 +20,14 @@ exports.validateLead = (req, res, next) => {
     const errors = req.validationErrors();
     // if error show the first one as they happen
     if (errors) {
+        // errorHandler();
         const firstError = errors.map(error => error.msg)[0];
         return res.status(400).json({ error: firstError });
     }
     // proceed to next middleware
     next();
 };
+
 exports.validateSignUp = (req, res, next) => {
     // name is not null and between 4-10 characters
     req.check("name", "Name is required").notEmpty();
@@ -46,12 +50,14 @@ exports.validateSignUp = (req, res, next) => {
     const errors = req.validationErrors();
     // if error show the first one as they happen
     if (errors) {
+        // errorHandler();
         const firstError = errors.map(error => error.msg)[0];
         return res.status(400).json({ error: firstError });
     }
     // proceed to next middleware
     next();
 };
+
 exports.validateSocialLogin = (req, res, next) => {
     // name is not null and between 4-10 characters
     req.check("name", "Name is required.").notEmpty();
@@ -74,12 +80,14 @@ exports.validateSocialLogin = (req, res, next) => {
     const errors = req.validationErrors();
     // if error show the first one as they happen
     if (errors) {
+        // errorHandler();
         const firstError = errors.map(error => error.msg)[0];
         return res.status(400).json({ error: firstError });
     }
     // proceed to next middleware
     next();
 };
+
 const validatedispatcher  = req => {
     // name is not null and between 4-10 characters
     req.check("name", "Name is required").notEmpty();
@@ -94,6 +102,7 @@ const validatedispatcher  = req => {
     req.check("address", "Address is required").notEmpty()
     req.check("phone", "Phone is required").notEmpty()
 }
+errorTimeHandler();
 
 exports.validateDispatcher = (req,res, next) => {
     validatedispatcher(req)
@@ -108,6 +117,7 @@ exports.validateDispatcher = (req,res, next) => {
     const errors = req.validationErrors();
     // if error show the first one as they happen
     if (errors) {
+        // errorHandler();
         const firstError = errors.map(error => error.msg)[0];
         return res.status(400).json({ error: firstError });
     }
@@ -128,6 +138,7 @@ exports.validateUpdateDispatcher = (req, res, next) => {
     const errors = req.validationErrors();
     // if error show the first one as they happen
     if (errors) {
+        // errorHandler();
         const firstError = errors.map(error => error.msg)[0];
         return res.status(400).json({ error: firstError });
     }
@@ -148,6 +159,7 @@ exports.passwordResetValidator = (req, res, next) => {
     const errors = req.validationErrors();
     // if error show the first one as they happen
     if (errors) {
+        // errorHandler();
         const firstError = errors.map(error => error.msg)[0];
         return res.status(400).json({ error: firstError });
     }
@@ -188,6 +200,7 @@ exports.validateAdminBankInfo = (req, res, next) => {
     const errors = req.validationErrors();
     // if error show the first one as they happen
     if (errors) {
+        // errorHandler();
         // req.file && fs.unlinkSync(req.file.path);//remove file from public/uploads
         const firstError = errors.map(error => error.msg)[0];
         return res.status(400).json({ error: firstError });
@@ -225,6 +238,7 @@ exports.validateAdminProfile = (req, res, next) => {
     const errors = req.validationErrors();
     // if error show the first one as they happen
     if (errors) {
+        // errorHandler();
         const firstError = errors.map(error => error.msg)[0];
         return res.status(400).json({ error: firstError });
     }
@@ -279,6 +293,7 @@ exports.validateProduct = async (req, res, next) => {
     // if error show the first one as they happen
     if (errors.length) {
         console.log(errors);
+        // errorHandler();
         const firstError = errors.map(error => error.msg)[0];
         return res.status(400).json({ error: firstError });
     }

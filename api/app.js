@@ -2,7 +2,6 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const initAppBootstrap = require('./utils/bootstrap');
 const fileUpload = require('express-fileupload');
 
 const app = express();
@@ -29,7 +28,6 @@ app.use('/api/v1', payment);
 
 // deployment
 __dirname = path.resolve();
-initAppBootstrap()
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '/frontend/build')))
 
