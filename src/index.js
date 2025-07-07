@@ -18,6 +18,7 @@ import {
   Checkout,
   PageNotFound,
 } from "./pages";
+import ProductCardDemo from "./pages/ProductCardDemo";
 import ScrollToTop from "./components/ScrollToTop";
 import { Toaster } from "react-hot-toast";
 
@@ -27,17 +28,18 @@ root.render(
     <ScrollToTop>
       <Provider store={store}>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/product" element={<Products />} />
-          <Route path="/product/:id" element={<Product />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/checkout" element={<Checkout />} />
-          <Route path="*" element={<PageNotFound />} />
-          <Route path="/product/*" element={<PageNotFound />} />
+          <Route path='/' element={<Home />} />
+          <Route path='/product' element={<Products />} />
+          <Route path='/product/:id' element={<Product />} />
+          <Route path='/about' element={<AboutPage />} />
+          <Route path='/contact' element={<ContactPage />} />
+          <Route path='/cart' element={<Cart />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/register' element={<Register />} />
+          <Route path='/checkout' element={<Checkout />} />
+          <Route path='/demo' element={<ProductCardDemo />} />
+          <Route path='*' element={<PageNotFound />} />
+          <Route path='/product/*' element={<PageNotFound />} />
         </Routes>
       </Provider>
     </ScrollToTop>
