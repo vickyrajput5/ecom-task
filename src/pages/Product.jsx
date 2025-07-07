@@ -41,19 +41,19 @@ const Product = () => {
   const Loading = () => {
     return (
       <>
-        <div className="container my-5 py-2">
-          <div className="row">
-            <div className="col-md-6 py-3">
+        <div className='container my-5 py-2'>
+          <div className='row'>
+            <div className='col-md-6 py-3'>
               <Skeleton height={400} width={400} />
             </div>
-            <div className="col-md-6 py-5">
+            <div className='col-md-6 py-5'>
               <Skeleton height={30} width={250} />
               <Skeleton height={90} />
               <Skeleton height={40} width={70} />
               <Skeleton height={50} width={110} />
               <Skeleton height={120} />
               <Skeleton height={40} width={110} inline={true} />
-              <Skeleton className="mx-3" height={40} width={110} />
+              <Skeleton className='mx-3' height={40} width={110} />
             </div>
           </div>
         </div>
@@ -64,33 +64,33 @@ const Product = () => {
   const ShowProduct = () => {
     return (
       <>
-        <div className="container my-5 py-2">
-          <div className="row">
-            <div className="col-md-6 col-sm-12 py-3">
+        <div className='container my-5 py-2'>
+          <div className='row'>
+            <div className='col-md-6 col-sm-12 py-3 product-detail-image-col'>
               <img
-                className="img-fluid"
+                className='img-fluid'
                 src={product.image}
                 alt={product.title}
-                width="400px"
-                height="400px"
+                width='400px'
+                height='400px'
               />
             </div>
-            <div className="col-md-6 col-md-6 py-5">
-              <h4 className="text-uppercase text-muted">{product.category}</h4>
-              <h1 className="display-5">{product.title}</h1>
-              <p className="lead">
+            <div className='col-md-6 py-5 product-detail-info-col'>
+              <h4 className='text-uppercase text-muted'>{product.category}</h4>
+              <h1 className='display-5'>{product.title}</h1>
+              <div className='product-detail-rating'>
                 {product.rating && product.rating.rate}{" "}
-                <i className="fa fa-star"></i>
-              </p>
-              <h3 className="display-6  my-4">${product.price}</h3>
-              <p className="lead">{product.description}</p>
+                <i className='fa fa-star'></i>
+              </div>
+              <h3 className='display-6  my-4'>${product.price}</h3>
+              <p className='lead'>{product.description}</p>
               <button
-                className="btn btn-outline-dark"
+                className='btn btn-outline-dark'
                 onClick={() => addProduct(product)}
               >
                 Add to Cart
               </button>
-              <Link to="/cart" className="btn btn-dark mx-3">
+              <Link to='/cart' className='btn btn-dark mx-3'>
                 Go to Cart
               </Link>
             </div>
@@ -103,18 +103,18 @@ const Product = () => {
   const Loading2 = () => {
     return (
       <>
-        <div className="my-4 py-4">
-          <div className="d-flex">
-            <div className="mx-4">
+        <div className='my-4 py-4'>
+          <div className='d-flex'>
+            <div className='mx-4'>
               <Skeleton height={400} width={250} />
             </div>
-            <div className="mx-4">
+            <div className='mx-4'>
               <Skeleton height={400} width={250} />
             </div>
-            <div className="mx-4">
+            <div className='mx-4'>
               <Skeleton height={400} width={250} />
             </div>
-            <div className="mx-4">
+            <div className='mx-4'>
               <Skeleton height={400} width={250} />
             </div>
           </div>
@@ -126,44 +126,39 @@ const Product = () => {
   const ShowSimilarProduct = () => {
     return (
       <>
-        <div className="py-4 my-4">
-          <div className="d-flex">
-            {similarProducts.map((item) => {
-              return (
-                <div key={item.id} className="card mx-4 text-center">
-                  <img
-                    className="card-img-top p-3"
-                    src={item.image}
-                    alt="Card"
-                    height={300}
-                    width={300}
-                  />
-                  <div className="card-body">
-                    <h5 className="card-title">
-                      {item.title.substring(0, 15)}...
-                    </h5>
-                  </div>
-                  {/* <ul className="list-group list-group-flush">
-                    <li className="list-group-item lead">${product.price}</li>
-                  </ul> */}
-                  <div className="card-body">
-                    <Link
-                      to={"/product/" + item.id}
-                      className="btn btn-dark m-1"
-                    >
-                      Buy Now
-                    </Link>
-                    <button
-                      className="btn btn-dark m-1"
-                      onClick={() => addProduct(item)}
-                    >
-                      Add to Cart
-                    </button>
-                  </div>
+        <div className='py-4 my-4 d-flex'>
+          {similarProducts.map((item) => {
+            return (
+              <div
+                key={item.id}
+                className='card text-center similar-product-card marquee-card'
+              >
+                <img
+                  className='card-img-top p-3'
+                  src={item.image}
+                  alt='Card'
+                  height={220}
+                  width={220}
+                />
+                <div className='card-body'>
+                  <h5 className='card-title'>
+                    {item.title.substring(0, 20)}...
+                  </h5>
                 </div>
-              );
-            })}
-          </div>
+                <div className='card-body d-flex flex-row justify-content-center align-items-center gap-2'>
+                  <Link to={"/product/" + item.id} className='btn btn-dark'>
+                    Buy Now
+                  </Link>
+                  <button
+                    className='btn btn-dark'
+                    onClick={() => addProduct(item)}
+                  >
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </>
     );
@@ -171,17 +166,20 @@ const Product = () => {
   return (
     <>
       <Navbar />
-      <div className="container">
-        <div className="row">{loading ? <Loading /> : <ShowProduct />}</div>
-        <div className="row my-5 py-5">
-          <div className="d-none d-md-block">
-          <h2 className="">You may also Like</h2>
+      <div className='container responsive-container product-detail-container'>
+        <div className='row'>{loading ? <Loading /> : <ShowProduct />}</div>
+        <div className='row my-5 py-5'>
+          <div className='similar-products-section'>
+            <h2 className='similar-products-title'>You may also Like</h2>
             <Marquee
               pauseOnHover={true}
               pauseOnClick={true}
               speed={50}
+              gradient={false}
             >
-              {loading2 ? <Loading2 /> : <ShowSimilarProduct />}
+              <div className='similar-products-marquee'>
+                {loading2 ? <Loading2 /> : <ShowSimilarProduct />}
+              </div>
             </Marquee>
           </div>
         </div>
